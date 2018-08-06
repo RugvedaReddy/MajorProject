@@ -1,0 +1,40 @@
+﻿
+
+@model IEnumerable<WebApplication1.Models.Child>
+@{
+    ViewBag.Title = "MiniStatement";
+}
+
+<h2>MiniStatement</h2>
+<table border="1">
+    <tr>
+        <th>Serial</th>
+        <th>TransactionDate</th>
+      
+        <th>
+            TransactionType
+        </th>
+        <th>Amount</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>
+                @x.Serial
+            </td>
+            <td>@x.Date</td>
+           
+            <td>@x.Type</td>
+            <td>@x.Amt</td>
+        </tr>
+    }
+</table>
+<div>
+    
+    @Html.ActionLink("VIEW-DETAILED STATEMENT", "DetailedStatement")
+    <br/>
+    @Html.ActionLink("BACK", "Links")
+
+
+</div>
+

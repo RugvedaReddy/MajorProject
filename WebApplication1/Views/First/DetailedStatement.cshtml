@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "DetailedStatement";
+}
+
+<h2>DetailedStatement</h2>
+<div style="background-color:lightgray">Search</div>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.RadioButton("trans", "date")TransactionDate(dd/mm/yy)
+        <label>
+            From
+        </label>
+        <input type="date" id="txtfrdate" name="txtfrdate" />
+        <label>
+            To
+        </label>
+        <input type="date" id="txttodate" name="txttodate" />
+    </div>
+    <div>
+        @Html.RadioButton("trans", "period")TransactionPeriod
+        @Html.DropDownList("ddlmember", new List<SelectListItem> { new SelectListItem { Text = "Last 1 Month", Value = "Last" }, new SelectListItem { Text = "Last 1 Week", Value = "LastWeek" }, new SelectListItem { Text = "Today", Value = "Today" } });
+    </div>
+    <div>
+        <input type="submit" value="Get Statement" name="Command"/>
+    </div>
+    if (Session["data"] != null)
+    {
+        <div>
+            <label>
+                From
+            </label>
+            @Html.TextBox("txtACCname", Session["ACCname"])
+        </div>
+        List<WebApplication1.Models.Child> C = (List<WebApplication1.Models.Child>)Session["data"];
+        if (C != null)
+        {
+        <table>
+            <caption>Transaction Details</caption>
+            <tr>
+                <th>Serial</th>
+                <th>TransactionDate</th>
+
+                <th>
+                    TransactionType
+                </th>
+                <th>Amount</th>
+            </tr>
+            @foreach (var x in C)
+            {
+                <tr>
+                    <td>
+                        @x.Serial
+                    </td>
+                    <td>@x.Date</td>
+
+                    <td>@x.Type</td>
+                    <td>@x.Amt</td>
+                </tr>
+
+            }
+        </table>
+        }
+        else
+        {
+
+        }
+        <div>
+            @Html.ActionLink("BACK", "LoginPage")
+        </div>
+
+    }
+}
+
+

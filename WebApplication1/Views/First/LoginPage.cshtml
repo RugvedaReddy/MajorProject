@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "LoginPage";
+}
+
+<h2>LoginPage</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <table border="1">
+        <caption style="background-color:red">Enter Your Login Details</caption>
+        <tr>
+            <td>
+                Enter Account Number:
+            </td>
+            <td>
+                @Html.TextBox("txtnumber")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter Password:
+            </td>
+            <td>
+                @Html.Password("txtpass")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Submit" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
